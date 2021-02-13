@@ -2,7 +2,7 @@
     "name": "@rat.md/rollup-resolve",
     "version": "0.1.0-alpha",
     "status": "alpha",
-    "description": "A small extension to build multiple rollup definitions from a glob, especially dsigned for our rat packages.",
+    "description": "A small rollup definition resolver / generator, especially designed and developed for our rat packages.",
     "keywords": [
         "rollup",
         "rat"
