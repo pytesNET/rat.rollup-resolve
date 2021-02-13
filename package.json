@@ -52,7 +52,7 @@
     ],
     "reveal": true,
     "dependencies": {
-        "fast-glob": "^3.2.5"
+        "tiny-glob": "^0.2.8"
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^8.1.1",

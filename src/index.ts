@@ -1,7 +1,7 @@
 
 import { RollupOptions } from 'rollup';
 
-const fg = require('fast-glob');
+const glob = require('tiny-glob');
 
 
 function deepClone(object1: RollupOptions, object2: RollupOptions): RollupOptions {
@@ -28,17 +28,17 @@ function deepClone(object1: RollupOptions, object2: RollupOptions): RollupOption
     return result;
 }
 
-function RatRollupResolve(match: string | string[], rollupOptions: RollupOptions | RollupOptions[], sharedOptions?: RollupOptions): RollupOptions[] {
+async function RatRollupResolve(match: string | string[], rollupOptions: RollupOptions | RollupOptions[], sharedOptions?: RollupOptions): Promise<RollupOptions[]> {
     let files = [];
 
     // Parse Files
     if (Array.isArray(match)) {
         for (let single of match) {
-            files = files.concat(fg.sync(single));
+            files = files.concat(await glob(single));
         }
 
     } else {
-        files = files.concat(fg.sync(match));
+        files = files.concat(await glob(match));
     }
     if (files.length === 0) {
         return [];
