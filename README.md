@@ -50,7 +50,7 @@ const langs = RatRollupResolve('src/ts/langs/*.ts', {
 ```
 
 
-### Multi Output Example
+### Multi Output Example with shared options
 
 ```javascript
 const plugins = RatRollupResolve('src/ts/plugins/*.ts', [
@@ -78,12 +78,12 @@ const plugins = RatRollupResolve('src/ts/plugins/*.ts', [
 ], {
    /* Shared rollup options */
     output: {
-        name: pkg.name,
+        name: 'package.name',
         plugins: [
             terser()
         ],
     },
-    external: ['rat.select'],
+    external: ['rat'],
     plugins: [
         RatSassSkip()
     ]
