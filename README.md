@@ -36,7 +36,7 @@ import { RatRollupResolve } from '@rat.md/rollup-resolve';
 ### Single Output Example
 
 ```javascript
-const langs = RatRollupResolve('src/ts/langs/*.ts', {
+const langs = await RatRollupResolve('src/ts/langs/*.ts', {
     output: {
         dir: 'dist/js/langs',
         esModule: false,
@@ -53,7 +53,7 @@ const langs = RatRollupResolve('src/ts/langs/*.ts', {
 ### Multi Output Example with shared options
 
 ```javascript
-const plugins = RatRollupResolve('src/ts/plugins/*.ts', [
+const plugins = await RatRollupResolve('src/ts/plugins/*.ts', [
     {
         output: {
             dir: 'dist/js/plugins',
