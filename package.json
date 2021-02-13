@@ -1,0 +1,64 @@
+{
+    "name": "@rat.md/rollup-resolve",
+    "version": "0.1.0-alpha",
+    "status": "alpha",
+    "description": "A small extension to build multiple rollup definitions from a glob, especially dsigned for our rat packages.",
+    "keywords": [
+        "rollup",
+        "rat"
+    ],
+    "author": "SamBrishes <sam@pytes.net> (https://www.pytes.net)",
+    "contributors": [
+        "Lenivyy <lenivyy@pytes.net> (https://www.pytes.net)"
+    ],
+    "license": "MIT",
+    "copyright": "pytesNET <info@pytes.net>",
+    "homepage": "https://rat.md/rollup-resolve",
+    "bugs": {
+        "url": "https://github.com/pytesNET/rat.rollup-resolve/issues",
+        "email": "info@pytes.net"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/pytesNET/rat.rollup-resolve.git"
+    },
+    "funding": [
+        {
+            "type": "buymeacoffee",
+            "url": "https://buymeacoff.ee/pytesNET"
+        },
+        {
+            "type": "paypal",
+            "url": "https://paypal.me/pytesNET"
+        }
+    ],
+    "engines": {
+        "node": "^14.13.0"
+    },
+    "scripts": {
+        "build": "rollup -c",
+        "watch": "rollup -c --watch",
+        "prepare": "rollup -c"
+    },
+    "main": "dist/rollup-resolve.js",
+    "module": "dist/rollup-resolve.mjs",
+    "exports": {
+        "import": "./dist/rollup-resolve.mjs",
+        "require": "./dist/rollup-resolve.js"
+    },
+    "files": [
+        "dist/*.js",
+        "dist/*.mjs"
+    ],
+    "reveal": true,
+    "dependencies": {
+        "fast-glob": "^3.2.5"
+    },
+    "devDependencies": {
+        "@rollup/plugin-typescript": "^8.1.1",
+        "@types/node": "^14.14.27",
+        "rollup": "^2.38.5",
+        "tslib": "^2.1.0",
+        "typescript": "^4.1.3"
+    }
+}
