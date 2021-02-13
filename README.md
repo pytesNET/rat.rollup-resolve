@@ -103,6 +103,7 @@ export default [
     }
 
     /* Unpack generated Definitions */
+    ...langs
     ...plugins
 ];
 ```
