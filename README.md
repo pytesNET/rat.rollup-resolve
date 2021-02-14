@@ -1,5 +1,9 @@
 @RAT - Rollup Resolve
 =====================
+[![Minfied Size](https://b.rat.md/rollup-resolve/~minified)](https://b.rat.md/rollup-resolve/+minified)
+[![Version](https://b.rat.md/rollup-resolve/~version)](https://b.rat.md/rollup-resolve/+version)
+[![Downloads](https://b.rat.md/rollup-resolve/~downloads)](https://b.rat.md/rollup-resolve/+downloads)
+[![Support](https://b.rat.md/global/~bmac)](https://b.rat.md/global/+bmac)
 
 **Rat's Rollup Resolve is NOT a rollup plugin it is more of a utility function !**
 
