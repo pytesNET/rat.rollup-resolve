@@ -24,8 +24,16 @@ function deepClone(object1, object2) {
     }
     return result;
 }
-async function RatRollupResolve(match, rollupOptions, sharedOptions) {
+async function RatRollupResolve(options, rollupOptions, sharedOptions) {
     let files = [];
+    if (options instanceof Object && !(options instanceof Array)) {
+        var match = options.match;
+        var rollupOptions = options.options;
+        var sharedOptions = options.sharedOptions;
+    }
+    else {
+        var match = options;
+    }
     if (Array.isArray(match)) {
         for (let single of match) {
             files = files.concat(await glob(single));
@@ -44,12 +52,12 @@ async function RatRollupResolve(match, rollupOptions, sharedOptions) {
     for (let file of files) {
         for (let singleOptions of rollupOptions) {
             if (typeof sharedOptions === 'undefined') {
-                var options = singleOptions;
+                var bundleOptions = singleOptions;
             }
             else {
-                var options = deepClone(singleOptions, sharedOptions);
+                var bundleOptions = deepClone(singleOptions, sharedOptions);
             }
-            result.push(Object.assign({ input: file }, options));
+            result.push(Object.assign({ input: file }, bundleOptions));
         }
     }
     return result;

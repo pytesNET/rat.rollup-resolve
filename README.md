@@ -34,33 +34,30 @@ Usage
 
 ```javascript
 import { RatRollupResolve } from '@rat.md/rollup-resolve';
-```
 
+// [OLD] Basic Syntax
+const rollups1 = await RatRollupResolve(
+    /* matching glob(s) */, 
+    /* individual rollup options */, 
+    /* [optional] shared rollup options */
+);
+
+// [NEW] Advanced Syntax
+const rollups2 = await RatRollupResolve(
+    match: /* matching glob(s) */,
+    options: /* individual rollup options */, 
+    sharedOptions: /* [optional] shared rollup options */,
+);
+```
 
 ### Single Output Example
 
 ```javascript
-const langs = await RatRollupResolve('src/ts/langs/*.ts', {
-    output: {
-        dir: 'dist/js/langs',
-        esModule: false,
-        format: 'umd',
-        interop: false
-    },
-    plugins: [
-        typescript({ sourceMap: false })
-    ]
-});
-```
-
-
-### Multi Output Example with shared options
-
-```javascript
-const plugins = await RatRollupResolve('src/ts/plugins/*.ts', [
-    {
+const langs = await RatRollupResolve({
+    match: 'src/ts/langs/*.ts',
+    options: {
         output: {
-            dir: 'dist/js/plugins',
+            dir: 'dist/js/langs',
             esModule: false,
             format: 'umd',
             interop: false
@@ -68,29 +65,53 @@ const plugins = await RatRollupResolve('src/ts/plugins/*.ts', [
         plugins: [
             typescript({ sourceMap: false })
         ]
-    },
-    {
-        output: {
-            dir: 'dist/es/plugins',
-            esModule: true,
-            format: 'es'
+    }
+});
+```
+
+
+### Multi Output Example with shared options
+
+```javascript
+const plugins = await RatRollupResolve({
+    match: 'src/ts/plugins/*.ts',
+    options: [
+        /* Individual Rollup Options */
+        {
+            output: {
+                dir: 'dist/js/plugins',
+                esModule: false,
+                format: 'umd',
+                interop: false
+            },
+            plugins: [
+                typescript({ sourceMap: false })
+            ]
         },
+        {
+            output: {
+                dir: 'dist/es/plugins',
+                esModule: true,
+                format: 'es'
+            },
+            plugins: [
+                typescript({ sourceMap: false, target: 'ES6' })
+            ]
+        }
+    ],
+    sharedOptions: {
+    /* Shared rollup options */
+        output: {
+            name: 'package.name',
+            plugins: [
+                terser()
+            ],
+        },
+        external: ['rat'],
         plugins: [
-            typescript({ sourceMap: false, target: 'ES6' })
+            RatSassSkip()
         ]
     }
-], {
-   /* Shared rollup options */
-    output: {
-        name: 'package.name',
-        plugins: [
-            terser()
-        ],
-    },
-    external: ['rat'],
-    plugins: [
-        RatSassSkip()
-    ]
 });
 ```
 

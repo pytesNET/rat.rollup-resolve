@@ -1,8 +1,8 @@
 
 import { RollupOptions } from 'rollup';
+import { RatResolveOptions } from './types/index.d';
 
 const glob = require('tiny-glob');
-
 
 function deepClone(object1: RollupOptions, object2: RollupOptions): RollupOptions {
     let result = Object.assign({ }, object1);
@@ -28,8 +28,17 @@ function deepClone(object1: RollupOptions, object2: RollupOptions): RollupOption
     return result;
 }
 
-async function RatRollupResolve(match: string | string[], rollupOptions: RollupOptions | RollupOptions[], sharedOptions?: RollupOptions): Promise<RollupOptions[]> {
+async function RatRollupResolve(options: string | string[] | RatResolveOptions, rollupOptions?: RollupOptions | RollupOptions[], sharedOptions?: RollupOptions): Promise<RollupOptions[]> {
     let files = [];
+
+    // Check New Syntax
+    if (options instanceof Object && !(options instanceof Array)) {
+        var match = options.match;
+        var rollupOptions = options.options;
+        var sharedOptions = options.sharedOptions;
+    } else {
+        var match = options;
+    }
 
     // Parse Files
     if (Array.isArray(match)) {
@@ -54,13 +63,13 @@ async function RatRollupResolve(match: string | string[], rollupOptions: RollupO
     for (let file of files) {
         for (let singleOptions of rollupOptions) {
             if (typeof sharedOptions === 'undefined') {
-                var options = singleOptions;
+                var bundleOptions = singleOptions;
             } else {
-                var options = deepClone(singleOptions, sharedOptions);
+                var bundleOptions = deepClone(singleOptions, sharedOptions);
             }
             result.push({
                 input: file,
-                ...options
+                ...bundleOptions
             });
         }
     }
