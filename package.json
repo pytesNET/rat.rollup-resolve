@@ -1,6 +1,6 @@
 {
     "name": "@rat.md/rollup-resolve",
-    "version": "0.1.2-alpha",
+    "version": "0.2.0",
     "status": "alpha",
     "description": "A small rollup definition resolver / generator, especially designed and developed for our rat packages.",
     "keywords": [
