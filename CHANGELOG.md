@@ -3,6 +3,8 @@ Changelog
 
 Version 0.2.0
 -------------
+-   Add: Prepare the new advanced syntax for further releases.
+-   Update: Dependencies
 
 Version 0.1.2
 -------------

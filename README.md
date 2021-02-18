@@ -76,7 +76,7 @@ const langs = await RatRollupResolve({
 const plugins = await RatRollupResolve({
     match: 'src/ts/plugins/*.ts',
     options: [
-        /* Individual Rollup Options */
+        /* Individual rollup options */
         {
             output: {
                 dir: 'dist/js/plugins',
@@ -100,7 +100,7 @@ const plugins = await RatRollupResolve({
         }
     ],
     sharedOptions: {
-    /* Shared rollup options */
+        /* Shared rollup options */
         output: {
             name: 'package.name',
             plugins: [
